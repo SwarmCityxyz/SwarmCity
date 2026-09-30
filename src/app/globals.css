@@ -1,0 +1,374 @@
+@import "tailwindcss";
+
+/* Swarm City design system: near-black void, bone text, one brand lime.
+   Display type is IBM Plex Sans (tight, heavy); labels and controls are mono. */
+
+@theme {
+  --color-void: #060807;
+  --color-void-2: #0b0e0c;
+  --color-void-3: #111512;
+  --color-void-4: #1a201b;
+  --color-bone: #f2f0e5;
+  --color-sand: #dbd1b2;
+  --color-mute: #aaa799;
+  --color-dim: #6f7266;
+  --color-lime: #94db17;
+  --color-lime-deep: #5f9410;
+  --color-lime-ink: #0b1400;
+  --color-gold: #b89c61;
+  --color-danger: #ff6b5e;
+  --color-danger-tint: rgb(255 107 94 / 0.1);
+  --color-line: rgb(201 213 202 / 0.13);
+  --color-line-strong: rgb(201 213 202 / 0.28);
+  --color-glass: rgb(14 17 15 / 0.78);
+
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --animate-fade: fade 0.18s ease-out;
+  --animate-pop: pop 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-sheet: sheet 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-rise: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes sheet {
+    from { transform: translateY(24px); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@layer base {
+  :root {
+    --gutter: 48px;
+    --max: 1344px;
+    --header: 79px;
+    color-scheme: dark;
+  }
+  @media (max-width: 767px) {
+    :root {
+      --gutter: 16px;
+      --header: 64px;
+    }
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header) + 16px);
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-void);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-lime);
+    color: var(--color-lime-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+  code,
+  pre,
+  kbd {
+    font-family: var(--font-mono);
+  }
+  summary {
+    cursor: pointer;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: calc(var(--max) + var(--gutter) * 2);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Small mono eyebrow above headings: "SWARM CITY / SOMETHING". */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+  .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  /* Display headings: heavy sans, tight tracking, second line in italic sand. */
+  .display {
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    color: var(--color-bone);
+  }
+  .h2 {
+    font-size: clamp(38px, 5vw, 72px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+    color: var(--color-bone);
+  }
+  .h3 {
+    font-size: clamp(30px, 3.4vw, 48px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+  }
+  .soft {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-sand);
+  }
+  .lede {
+    color: var(--color-mute);
+    font-size: 19px;
+    line-height: 1.58;
+  }
+  @media (max-width: 767px) {
+    .lede {
+      font-size: 17px;
+    }
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.05em;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  /* Buttons: pill, mono uppercase label, trailing arrow. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    height: 44px;
+    padding-inline: 22px;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 0.18s, color 0.18s, border-color 0.18s, transform 0.18s;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-lime {
+    background: var(--color-lime);
+    color: var(--color-lime-ink);
+  }
+  .btn-lime:hover {
+    background: #a6ea2c;
+  }
+  .btn-ghost {
+    border: 1px solid var(--color-line-strong);
+    color: var(--color-bone);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-lime);
+    color: var(--color-lime);
+  }
+  .btn-sm {
+    height: 36px;
+    padding-inline: 16px;
+    gap: 12px;
+  }
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .link-mono {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+    transition: color 0.15s;
+  }
+  .link-mono:hover {
+    color: var(--color-bone);
+  }
+
+  /* Glass panel with a soft inner highlight, used for the big product cards. */
+  .glass {
+    background:
+      linear-gradient(135deg, rgb(219 240 224 / 0.045), rgb(204 229 209 / 0.008) 48%, rgb(204 245 204 / 0.025)),
+      rgb(14 17 15 / 0.78);
+    border: 1px solid var(--color-line-strong);
+    box-shadow:
+      inset 0 1px 1px rgb(237 255 237 / 0.045),
+      0 30px 60px -30px rgb(0 0 0 / 0.6);
+  }
+  .card {
+    background: var(--color-void-2);
+    border: 1px solid var(--color-line);
+  }
+
+  .rule {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .field {
+    width: 100%;
+    height: 44px;
+    border-radius: 8px;
+    border: 1px solid var(--color-line-strong);
+    background: rgb(255 255 255 / 0.02);
+    padding-inline: 14px;
+    color: var(--color-bone);
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .field::placeholder {
+    color: var(--color-dim);
+  }
+  .field:focus {
+    border-color: var(--color-lime);
+  }
+  textarea.field {
+    height: auto;
+    padding-block: 12px;
+    line-height: 1.5;
+    resize: vertical;
+  }
+
+  .scroll-x {
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  /* Faint green glow behind hero content. */
+  .glow {
+    background: radial-gradient(60% 60% at 70% 30%, rgb(148 219 23 / 0.07), transparent 70%);
+  }
+
+  /* Long-form document text (docs pages, privacy, terms). */
+  .prose-doc {
+    color: var(--color-mute);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .prose-doc h2 {
+    margin-top: 56px;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--color-bone);
+  }
+  .prose-doc h3 {
+    margin-top: 32px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-bone);
+  }
+  .prose-doc p {
+    margin-top: 16px;
+  }
+  .prose-doc ul,
+  .prose-doc ol {
+    margin-top: 16px;
+    padding-left: 22px;
+  }
+  .prose-doc ul {
+    list-style: square;
+  }
+  .prose-doc ol {
+    list-style: decimal;
+  }
+  .prose-doc li {
+    margin-top: 8px;
+  }
+  .prose-doc li::marker {
+    color: var(--color-lime);
+  }
+  .prose-doc a {
+    color: var(--color-lime);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-doc strong {
+    color: var(--color-bone);
+    font-weight: 600;
+  }
+  .prose-doc code {
+    font-size: 0.86em;
+    color: var(--color-sand);
+    background: rgb(255 255 255 / 0.05);
+    padding: 1px 5px;
+    border-radius: 4px;
+    overflow-wrap: anywhere;
+  }
+  .prose-doc table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .prose-doc th,
+  .prose-doc td {
+    border-bottom: 1px solid var(--color-line);
+    padding: 10px 8px 10px 0;
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-doc th {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    font-weight: 500;
+  }
+}
