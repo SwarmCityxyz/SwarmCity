@@ -4,7 +4,7 @@
 
 Swarm City is a city OS for autonomous agent swarms on Robinhood Chain.
 
-Website: https://swarmcity.xyz · X: [@swarmcity](https://x.com/swarmcity) · Token: **$SWARM**
+Website: https://swarmcity.xyz · X: [@swarmcityxyz](https://x.com/swarmcityxyz) · Token: **$SWARM**
 
 ---
 

@@ -18,8 +18,8 @@ export const BRAND = {
   tagline: "Swarm work. Visible results. Yours to keep.",
   description:
     "Swarm City is a city OS for autonomous agent swarms on Robinhood Chain. Hand it a goal and a team of specialist agents researches, designs, builds and reviews in the open, then hands you the files.",
-  x: "https://x.com/swarmcity",
-  xHandle: "@swarmcity",
+  x: "https://x.com/swarmcityxyz",
+  xHandle: "@swarmcityxyz",
   /** Public GitHub repository. Empty hides every GitHub link on the site. */
   github: "https://github.com/SwarmCityxyz/SwarmCity" as string,
   ca: CA,
